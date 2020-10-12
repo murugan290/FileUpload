@@ -1,0 +1,49 @@
+<h3>CSV Data Viewer</h3>
+<form [formGroup]="fileUploadForm" (ngSubmit)="viewFile()">
+  <div >
+      <div>
+        <div>
+            <input type="file"  id="newFile" name="uploadedFile" (change)="onFileUpload($event)" >
+        </div>
+      </div>
+      <br>
+      <div>
+          <button type="submit">View File</button>
+      </div>
+  </div>
+</form>
+
+<hr *ngIf="records.length > 0">
+
+<mat-form-field>
+  <input *ngIf="records.length > 0" (keyup)="applyFilter($event)" matInput placeholder="filter by Issue Count">
+</mat-form-field>
+
+
+ <div class="mat-elevation-z8">
+    <mat-table [dataSource]="listData">
+        <ng-container matColumnDef="firstName">
+            <mat-header-cell *matHeaderCellDef>First Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.firstName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="surName">
+            <mat-header-cell *matHeaderCellDef>Sur Name</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.surName}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="issueCount">
+            <mat-header-cell *matHeaderCellDef>Issue Count</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.issueCount}} </mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="dateOfBirth">
+            <mat-header-cell *matHeaderCellDef>Issue Count</mat-header-cell>
+            <mat-cell *matCellDef="let element"> {{element.dateOfBirth}} </mat-cell>
+        </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+</div> 
+
+
+
+ 
+
